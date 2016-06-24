@@ -1,0 +1,64 @@
+body {
+	&.login {
+		background: #6f3b7d;
+		//font-family: 'Lato';
+		h1 {
+			color: #fff;
+			font-size: 54px;
+			font-family: 'Lato';
+			.desktop({
+				margin-top: 200px;
+			});
+			.not-desktop({
+				margin-top: 50px;
+			});
+		}
+		
+		form {
+			.desktop({
+				margin-top: 200px;
+			});
+			.not-desktop({
+				margin-top: 50px;
+			});
+		}
+		
+		input {
+			border: none;
+			border-radius: 0px;
+			padding: 25px;
+			font-size: 22px;
+			background: transparent;
+			border-bottom: 2px solid #fff;
+			box-shadow: none;
+			color: #fff;
+			font-family: 'Lato';
+			
+			&:focus {
+				box-shadow: none;
+				border-color: #fff;
+				/*.desktop({
+					background: #fff;
+					color: #000;
+					font-weight: 900;
+					outline: 0;
+				});*/
+			}
+			
+			&::-webkit-input-placeholder { color: #fff; }
+			&::-moz-placeholder { color: #fff; }
+			&:-moz-input-placeholder { color: #fff; }
+			&:-ms-input-placeholder { color: #fff; }
+			
+			/*.desktop({
+				&:focus {
+					&::-webkit-input-placeholder { color: #000; }
+					&::-moz-placeholder { color: #000; }
+					&:-moz-placeholder { color: #000; }
+					&:-ms-input-placeholder { color: #000; }
+				}
+			});*/
+		}
+		
+	}
+}
