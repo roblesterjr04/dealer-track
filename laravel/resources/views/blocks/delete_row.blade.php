@@ -1,4 +1,4 @@
-<a id="{{$modid}}_del_button" type="submit" class="text-danger pull-right" href="#">Delete</a>
+<a id="{{$modid}}_del_button" type="submit" class="btn text-danger pull-right" href="#">Delete</a>
 <script>
 	$('#{{$modid}}_del_button').click(function(e) {
 		e.preventDefault();

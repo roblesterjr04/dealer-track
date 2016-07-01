@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-define('API_KEY', '3w75b8yv4t65sjsn36uwx6jy');
-
 use Illuminate\Http\Request;
 
 use App\Vehicle;
@@ -44,19 +42,27 @@ class VehiclesController extends Controller
         $this->validate($request, [
 	        'vin' => 'required|max:17|unique:vehicles',
 	    ]);
+	    
 	    $vin = $request->vin;
-	    $key = API_KEY;
-	    $url = "https://api.edmunds.com/api/vehicle/v2/vins/$vin?fmt=json&api_key=$key";
-	    $data = file_get_contents($url);
-	    var_dump($data);
-	    exit;
+	    
 	    $vehicle = new Vehicle();
-	    $vehicle->vin = $request->vin;
-	    try {
-		    $vehicle->save();
-		    return redirect('/vehicles/')->with('message', 'Saved ' . $request->vin);
-	    } catch (Illuminate\Database\QueryException $e) {
-		    return redirect('/vehicles/')->with('message', 'Failed to save ' . $request->vin);
+	    $vehicle->vin = $vin;
+	    $vehicle->stock_id = $request->stock_id;
+	    
+	    if (isset($request->api)) {
+		    try {
+			    $vehicle->save();
+			    return json_encode($vehicle);
+		    } catch (Illuminate\Database\QueryException $e) {
+			    return "{ \"Error\": \"Failed to save vehicle.\"  }";
+		    }
+	    } else {
+		    try {
+			    $vehicle->save();
+			    return redirect('/vehicles/')->with('message', 'Saved ' . $vin);
+		    } catch (Illuminate\Database\QueryException $e) {
+			    return redirect('/vehicles/')->with('message', 'Failed to save ' . $vin);
+		    }
 	    }
     }
 
@@ -79,7 +85,9 @@ class VehiclesController extends Controller
      */
     public function edit($id)
     {
-        //
+	    $vehicle = Vehicle::findOrFail($id);
+	    
+	    return view('record/vehicle', ['vehicle'=>$vehicle, 'table'=>'vehicles', 'title'=>'Vehicles', 'subtitle'=>'Edit Vehicle']);
     }
 
     /**
@@ -91,7 +99,13 @@ class VehiclesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
+	    $properties = ['vin', 'stock_id', 'new'];
+        $vehicle = Vehicle::findOrFail($id);
+        foreach ($properties as $var) {
+	        $vehicle->$var = $request->$var;
+        }
+        $vehicle->save();
+        return redirect('/vehicles/' . $id)->with('message', 'Saved');
     }
 
     /**
@@ -106,8 +120,5 @@ class VehiclesController extends Controller
         $vehicle->delete();
         
     }
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    
 }

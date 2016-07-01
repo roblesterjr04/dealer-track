@@ -26,7 +26,7 @@
             <li class="header">MAIN NAVIGATION</li>
             <li class="{{ Route::current() && (Route::current()->uri() == '/' || Route::current()->uri() == 'updates') ? 'active' : '' }} treeview">
               <a href="#">
-                <i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
+                <i class="fa fa-dashboard fa-fw"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                 <li class="{{ Route::current() && Route::current()->uri() == '/' ? 'active' : '' }}"><a href="/"><i class="fa fa-circle-o"></i> Dashboard</a></li>
@@ -34,13 +34,24 @@
               </ul>
             </li>
             <li class="{{ Route::current() && strpos(Route::current()->uri(), 'vehicles') !== false ? 'active' : '' }} treeview">
-            	<a href="/objects"><i class="fa fa-car"></i> <span>Inventory</span> <i class="fa fa-angle-left pull-right"></i></a>
+            	<a href="/vehicles"><i class="fa fa-car fa-fw"></i> <span>Inventory</span> <i class="fa fa-angle-left pull-right"></i></a>
             	<ul class="treeview-menu">
 	            	<li class="{{ Route::current() && Route::current()->uri() == 'vehicles' ? 'active' : '' }}">
 	            		<a href="/vehicles"><i class="fa fa-circle-o"></i> All Inventory</a>
 	            	</li>
 	            	<li class="{{ Route::current() && Route::current()->uri() == 'vehicles/create' ? 'active' : '' }}">
 	            		<a href="/vehicles/create"><i class="fa fa-circle-o text-aqua"></i> Add New</a>
+	            	</li>
+            	</ul>
+            </li>
+            <li class="{{ Route::current() && strpos(Route::current()->uri(), 'devices') !== false ? 'active' : '' }} treeview">
+            	<a href="/devices"><i class="fa fa-barcode fa-fw"></i> <span>Mobile Devices</span> <i class="fa fa-angle-left pull-right"></i></a>
+            	<ul class="treeview-menu">
+	            	<li class="{{ Route::current() && Route::current()->uri() == 'devices' ? 'active' : '' }}">
+	            		<a href="/devices"><i class="fa fa-circle-o"></i> All Devices</a>
+	            	</li>
+	            	<li class="{{ Route::current() && Route::current()->uri() == 'vehicles/create' ? 'active' : '' }}">
+	            		<a href="/devices/create"><i class="fa fa-circle-o text-aqua"></i> Add New</a>
 	            	</li>
             	</ul>
             </li>

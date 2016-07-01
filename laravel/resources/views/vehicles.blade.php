@@ -16,8 +16,8 @@
 	<tbody>
 		@foreach ($vehicles as $v)
 			<tr role="row" id="{{$table}}_{{$v->id}}">
-				<td><img src="{{$v->img_url}}" style="width: 100px; border-radius: 5px; margin: 0 auto; display: block;" /></td>
-				<td>{{$v->vin}}</td>
+				<td style="width: 120px"><img src="{{$v->img_url}}" style="width: 75px; border-radius: 5px; margin: 0 auto; display: block;" /></td>
+				<td><p><a href="vehicles/{{$v->id}}">{{$v->vin}}</a> <span class="label label-{{ $v->new ? 'success' : 'default' }}">{{ $v->new ? 'New' : 'Used' }}</span></p></td>
 				<td>{{$v->year}}</td>
 				<td>{{$v->make}}</td>
 				<td>{{$v->model}}</td>
