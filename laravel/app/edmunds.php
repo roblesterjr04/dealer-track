@@ -31,7 +31,7 @@ class edmunds
 	    return false;
 	}
 	
-	public function retrieve() {
+	public function data() {
 		$data = file_get_contents($this->vin_url);
 	    $data = json_decode($data);
 	    

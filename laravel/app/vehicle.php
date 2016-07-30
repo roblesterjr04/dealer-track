@@ -15,7 +15,7 @@ class vehicle extends Model
 	    $vin = $this->vin;
 	    
 	    $ed = new Edmunds($vin);
-	    $data = $ed->retrieve();
+	    $data = $ed->data();
 	    
 	    $this->make = $data->make->name;
 	    $this->model = $data->model->name;
