@@ -10,7 +10,7 @@
 		</tr>
 </thead>
 	<tbody>
-		@foreach ($devices as $v)
+		@foreach ($rows as $v)
 			<tr role="row" id="{{$table}}_{{$v->id}}">
 				<td>
 					<a href="/devices/{{ $v->id }}">{{ $v->user_name }}</a>

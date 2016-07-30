@@ -5,7 +5,7 @@
 		{{ csrf_field() }}
 		<div class="row">
 	
-				<div class="col-md-6">
+				<div class="col-md-7">
 					<div class="box box-warning">
 						<div class="box-header with-border">
 							<h3 class="box-title">Device User Data</h3>
@@ -29,6 +29,20 @@
 								<label for="phone" class="col-sm-2 control-label">Phone #</label>
 								<div class="col-sm-10">
 									<input value="{{ isset($device) ? $device->phone : old('phone') }}" type="tel" class="form-control" name="phone" placeholder="User Phone #">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="department" class="col-sm-2 control-label">Department</label>
+								<div class="col-sm-10">
+									<select name="department" class="form-control">
+										@foreach ($departments as $department)
+											<option value="{{ $department->id }}" 
+											@if ($department->id == $device->department_id)
+												selected
+											@endif
+											>{{ $department->name }}</option>
+										@endforeach
+									</select>
 								</div>
 							</div>
 						</div><!-- /.box-body -->

@@ -17,8 +17,8 @@ class VehiclesController extends Controller
      */
     public function index()
     {
-        $vehicles = Vehicle::get();
-        return view('vehicles', ['title'=>'Vehicle Inventory', 'addnew'=>'Vehicle', 'vehicles'=>$vehicles, 'table'=>'vehicles']);
+        $vehicles = Vehicle::paginate(2);
+        return view('vehicles', ['title'=>'Vehicle Inventory', 'addnew'=>'Vehicle', 'rows'=>$vehicles, 'table'=>'vehicles']);
     }
 
     /**

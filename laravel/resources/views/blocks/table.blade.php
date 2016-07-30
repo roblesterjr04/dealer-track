@@ -38,6 +38,7 @@
 					               <table id="{{ $table }}" class="table table-bordered table-hover" role="grid" aria-describedby="{{ $table }}_info">
 											@yield('data')
 	                  			</table>
+	                  			{!! $rows->render() !!}
 	                  		</div>
                   		</div>
 					   	</div>
@@ -52,9 +53,9 @@
 @section('footer')
 
 <script>
-		      $(function () {
+		     $(function () {
 		        $('#{{ $table }}').DataTable({
-		          "paging": true,
+		          "paging": false,
 		          "lengthChange": false,
 		          "searching": false,
 		          "ordering": true,

@@ -19,7 +19,14 @@ Route::get('auth/logout', 'Auth\AuthController@getLogout');
 // Registration Routes...
 Route::get('auth/register', 'Auth\AuthController@getRegister');
 Route::post('auth/register', 'Auth\AuthController@postRegister');
-	
+
+
+// API Routes...
+Route::post('api/location/store', 'LocationsController@store');
+Route::post('devices/{id}/pair', 'DevicesController@pair');
+Route::post('devices/{id}/unpair', 'DevicesController@unpair');
+Route::post('devices/{id}/active', 'DevicesController@active');	
+
 Route::group(['middleware' => 'auth'], function () {
 	
 	Route::get('/', 'IndexController@index');
@@ -46,12 +53,4 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::delete('devices/{id}', 'DevicesController@destroy');
 
 });
-
-
-
-// API Routes...
-Route::post('api/location/store', 'LocationsController@store');
-Route::post('devices/{id}/pair', 'DevicesController@pair');
-Route::post('devices/{id}/unpair', 'DevicesController@unpair');
-Route::post('devices/{id}/active', 'DevicesController@active');
 	

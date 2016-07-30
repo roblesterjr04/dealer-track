@@ -8,6 +8,10 @@ class device extends Model
 {
 	public $activation;
 	
+	public function department() {
+		return $this->belongsTo('App\Department', 'department_id', 'id');
+	}
+	
     public function save(array $options = Array()) {
 	    
 	    if (isset($options['new'])) {

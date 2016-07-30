@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Device;
+use App\Department;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
@@ -18,7 +19,7 @@ class DevicesController extends Controller
     public function index()
     {
         $devices = Device::get();
-        return view('devices', ['title'=>'Mobile Devices', 'addnew'=>'Device', 'devices'=>$devices, 'table'=>'devices']);
+        return view('devices', ['title'=>'Mobile Devices', 'addnew'=>'Device', 'rows'=>$devices, 'table'=>'devices']);
     }
 
     /**
@@ -71,7 +72,8 @@ class DevicesController extends Controller
     public function edit($id)
     {
 	    $device = Device::findOrFail($id);
-	    return view('record/device', ['table'=>'devices', 'device'=>$device, 'title'=>'Devices', 'subtitle'=>'Edit Device']);
+	    $departments = Department::get();
+	    return view('record/device', ['table'=>'devices', 'device'=>$device, 'departments'=>$departments, 'title'=>'Devices', 'subtitle'=>'Edit Device']);
     }
 
     /**
@@ -87,6 +89,7 @@ class DevicesController extends Controller
         $device->user_name = $request->user_name;
         $device->email = $request->email;
         $device->phone = $request->phone;
+        $device->department_id = $request->department;
         try {
 		    $device->save();
 		    return redirect('/devices/')->with('message', 'Saved');
@@ -113,7 +116,8 @@ class DevicesController extends Controller
 		    $obj = new \stdClass();
 		    $obj->message = "Invalid code";
 		    $obj->device = null;
-		    return response()->json($obj)->header("Status", "400, Bad Request");
+		    return response()->json($obj)->header("Status", "400, Bad Request")->header("Content-type", "application/json");
+		    //return response()->json($obj);
 	    }
     }
     
