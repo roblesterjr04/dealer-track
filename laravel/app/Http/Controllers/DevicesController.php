@@ -18,7 +18,7 @@ class DevicesController extends Controller
      */
     public function index()
     {
-        $devices = Device::get();
+        $devices = Device::paginate(10);
         return view('devices', ['title'=>'Mobile Devices', 'addnew'=>'Device', 'rows'=>$devices, 'table'=>'devices']);
     }
 

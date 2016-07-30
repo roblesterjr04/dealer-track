@@ -5,10 +5,9 @@ namespace App;
 class edmunds
 {
 	private $api_key = '3w75b8yv4t65sjsn36uwx6jy';
+	
 	private $vin_url;
 	private $img_url;
-	
-	
 	
 	public function __construct($vin) {
 		$this->vin_url = "https://api.edmunds.com/api/vehicle/v2/vins/$vin?fmt=json&api_key={$this->api_key}";
