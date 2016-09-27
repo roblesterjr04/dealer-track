@@ -42,9 +42,10 @@ class message extends Model
 	        $numberOfUnits = floor($time / $unit);
 	        return $numberOfUnits.' '.$text.(($numberOfUnits>1)?'s':'');
 	    }
-	    
-	    	
 	}
 	
+	public function send(array $options = []) {
+		return parent::save($options);
+	}
 	
 }

@@ -38,10 +38,10 @@ class User extends Model implements AuthenticatableContract,
     protected $hidden = ['password', 'remember_token'];
     
     public function messages() {
-	    return $this->hasMany('App\Message', 'user_id', 'id');
+	    return $this->hasMany('App\Message', 'user_id', 'id')->orderBy('created_at', 'desc');
     }
     
-    public function sent() {
-	    return $this->hasMany('App\Message', 'from_id', 'id');
+    public function sentMessages() {
+	    return $this->hasMany('App\Message', 'from_id', 'id')->orderBy('created_at', 'desc');
     }
 }
