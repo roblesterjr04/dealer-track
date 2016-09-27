@@ -6,3 +6,4 @@ vendor/
 # composer.lock
 
 laravel/config/app.php
+laravel/config/database.php
